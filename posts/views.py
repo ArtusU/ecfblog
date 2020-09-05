@@ -13,8 +13,6 @@ def index(request):
         new_signup.email = email
         new_signup.save()
 
-
-
     context = {
         'object_list':featured,
         'latest': latest
@@ -23,7 +21,11 @@ def index(request):
 
 
 def blog(request):
-    return render(request, 'blog.html', {})
+    post_list = Post.objects.all()
+    context = {
+        'post_list': post_list
+    }
+    return render(request, 'blog.html', context)
 
 def post(request):
     return render(request, 'post.html', {})
