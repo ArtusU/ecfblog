@@ -44,7 +44,7 @@ def index(request):
 
 def blog(request):
     category_count = get_category_count()
-    print(category_count)
+    #print(category_count)
     most_recent = Post.objects.order_by('-timestamp')[:3]
     post_list = Post.objects.all()
 
