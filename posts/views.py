@@ -52,7 +52,7 @@ def blog(request):
     category_count = get_category_count()
     #print(category_count)
     most_recent = Post.objects.order_by('-timestamp')[:3]
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().order_by('-timestamp')
 
     paginator = Paginator(post_list, 4)
     page_request_var = 'page'
@@ -76,7 +76,6 @@ def post(request, id):
     category_count = get_category_count()
     most_recent = Post.objects.order_by('-timestamp')[:3]
     post = get_object_or_404(Post, id=id)
-
     form = CommentForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid:
@@ -86,8 +85,6 @@ def post(request, id):
             return redirect(reverse("post-detail", kwargs={
                 'id': post.id
             }))
-
-
     context = {
         'form': form,
         'post': post,
@@ -118,7 +115,29 @@ def post_create(request):
 
 
 def post_update(request, id):
-    pass
+    title = 'Update'
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=post)
+    author = get_author(request.user)
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse("post-detail", kwargs={
+                'id': form.instance.id
+            }))
+    context = {
+        'title': title,
+        'form': form
+    }
+    return render(request, "post_create.html", context)
+
+
 
 def post_delete(request, id):
-    pass
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse("post-list"))
