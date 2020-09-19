@@ -41,7 +41,7 @@
                     <a href="#">{{ cat }}</a>
                     {% endfor %}
                   </div>
-                  <a href="post.html">
+                  <a href="{{ obj.get_absolute_url }}">
                     <h2 class="h4">{{ obj.title }}</h2>
                     </a>
                 </header>
@@ -82,7 +82,7 @@
         <div class="row">
           {% for obj in latest %}
           <div class="post col-md-4">
-            <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+            <div class="post-thumbnail"><a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
             <div class="post-details">
               <div class="post-meta d-flex justify-content-between">
                 <div class="date">{{ obj.timestamp }}</div>
@@ -91,7 +91,7 @@
                   <a href="#">{{ cat }}</a>
                   {% endfor %}
                   </div>
-              </div><a href="#">
+              </div><a href="{{ obj.get_absolute_url }}">
                 <h3 class="h4">{{ obj.title }}</h3></a>
               <p class="text-muted">{{ obj.overview }}</p>
             </div>
@@ -126,19 +126,19 @@
     <section class="gallery no-padding">    
       <div class="row">
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/gallery-1.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-1.jpg' %}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'img/healthyrecipes.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/healthyrecipes.jpg' %}" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/gallery-2.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-2.jpg' %}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'img/mangement.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/mangement.jpg' %}" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/gallery-3.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-3.jpg' %}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'img/opertions.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/opertions.jpg' %}" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/gallery-4.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/gallery-4.jpg' %}" alt="..." class="img-fluid">
+          <div class="item"><a href="{% static 'img/projects.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/projects.jpg' %}" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
       </div>
