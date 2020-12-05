@@ -48,6 +48,7 @@ urlpatterns = [
     path('search/', SearchView.as_view(), name='search'),
 
     path('tinymce/', include('tinymce.urls')),
+    
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', index),
     

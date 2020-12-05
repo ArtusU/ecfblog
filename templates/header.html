@@ -1,3 +1,8 @@
+
+{% load static %}
+
+
+
 <header class="header">
   <!-- Main Navbar-->
   <nav class="navbar navbar-expand-lg">
@@ -19,7 +24,7 @@
     <div class="container">
       <!-- Navbar Brand --> 
       <div class="navbar-header d-flex align-items-center justify-content-between">
-        <!-- Navbar Brand --><a href="/" class="navbar-brand">Edinburgh Community Food Blog</a>
+        <!-- Navbar Brand --><a href="/" class="navbar-brand">ECF Blog</a>
         <!-- Toggle Button-->
         <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
       </div>
@@ -34,6 +39,21 @@
           <li class="nav-item"><a href="{% url 'post-create' %}" class="nav-link ">Create</a>
           </li>
           {% endif %}
+
+          
+          {% if user.is_authenticated %}
+          
+          <li class="nav-item"><a class="nav-link" href="#" class="nav-link ">Welcome {{ request.user }}</a>
+          </li>
+          <li class="avatar"><img src="{{ request.user.profile_picture.url }}" alt="..." class="img-fluid"></a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}"><i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
+          {% else %}  
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}"><i class="fas fa-user-alt mr-1 text-gray"></i>Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+            </li>
+          {% endif %}
+          
           <!--li class="nav-item"><a href="/" class="nav-link ">Contact</a>
           </li-->
         </ul>
