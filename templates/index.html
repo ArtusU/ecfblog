@@ -3,7 +3,8 @@
 
 
 {% block content %}
-    <!-- Hero Section-->
+
+  <!-- Hero Section-->
     <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
       <div class="container">
         <div class="row">
@@ -24,60 +25,13 @@
         </div>
       </div>
     </section>
-    <section class="featured-posts no-padding-top">
-      <div class="container">
-        <!-- Post-->
-        {% for obj in object_list %}
-        <div class="row d-flex align-items-stretch">
-          {% if not forloop.first and not forloop.last %}
-          <div class="image col-lg-5"><img src="{{ obj.thumbnail.url }}" alt="..."></div>
-          {% endif %}
-          <div class="text col-lg-7">
-            <div class="text-inner d-flex align-items-center">
-              <div class="content">
-                <header class="post-header">
-                  <div class="category">
-                    {% for cat in obj.categories.all %}
-                    <a href="#">{{ cat }}</a>
-                    {% endfor %}
-                  </div>
-                  <a href="{{ obj.get_absolute_url }}">
-                    <h2 class="h4">{{ obj.title }}</h2>
-                    </a>
-                </header>
-                <p>{{ obj.overview }}</p>
-                <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>{{ object.author }}</span></div></a>
-                  <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago</div>
-                  <div class="comments"><i class="icon-comment"></i>{{ obj.comment_count }}</div>
-                </footer>
-              </div>
-            </div>
-          </div>
-          {% if forloop.first or forloop.last %}
-          <div class="image col-lg-5"><img src="{{ obj.thumbnail.url }}" alt="..."></div>
-          {% endif %}
-        </div>
-        {% endfor %}
-      </div>
-    </section>
-    <!-- Divider Section-->
-    <section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7">
-            <h2>As a leader in Edinburgh’s community food and health sector we are working to promote health equality by helping to provide healthy food, offering food education and supporting community health initiatives.</h2><a href="#" class="hero-link">View More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Latest Posts -->
+
+<!-- Latest Posts -->
     <section class="latest-posts"> 
       <div class="container">
         <header> 
-          <h2>Latest from the blog</h2>
-          <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <h2>Latest News</h2>
+          <p class="text-big">Have a look at ours last chalenges.</p>
         </header>
         <div class="row">
           {% for obj in latest %}
@@ -94,12 +48,18 @@
               </div><a href="{{ obj.get_absolute_url }}">
                 <h3 class="h4">{{ obj.title }}</h3></a>
               <p class="text-muted">{{ obj.overview }}</p>
+              <a href="#" class="author d-flex align-items-center flex-wrap">
+                <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                <div class="title"><span>{{ obj.author.user.username }}</span></div>
+                <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago</div>
+              </a>
             </div>
           </div>
           {% endfor %}
         </div>
       </div>
     </section>
+    
     <!-- Newsletter Section-->
     <section class="newsletter no-padding-top">    
       <div class="container">
