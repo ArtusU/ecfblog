@@ -18,7 +18,7 @@
     <section class="intro">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-14">
             <h2 class="h3">ECF</h2>
             <p class="text-big">Edinburgh Community Food is a <strong>social enterprise</strong> and a <strong> charity</strong>. Our social enterprise work is all about sourcing and selling the best quality fruit and vegetables. We run stalls in Edinburgh’s hospitals selling our great produce to staff, patients and visitors.  We also deliver fresh fruit and vegetables to homes and businesses across the city. All our profits go back into our charitable work.</p>
           </div>
@@ -36,23 +36,25 @@
         <div class="row">
           {% for obj in latest %}
           <div class="post col-md-4">
-            <div class="post-thumbnail"><a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date">{{ obj.timestamp }}</div>
-                <div class="category">
-                  {% for cat in obj.categories.all %}
-                  <a href="#">{{ cat }}</a>
-                  {% endfor %}
-                  </div>
-              </div><a href="{{ obj.get_absolute_url }}">
-                <h3 class="h4">{{ obj.title }}</h3></a>
-              <p class="text-muted">{{ obj.overview }}</p>
-              <a href="#" class="author d-flex align-items-center flex-wrap">
-                <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
-                <div class="title"><span>{{ obj.author.user.username }}</span></div>
-                <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago</div>
-              </a>
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+              <div class="post-thumbnail"><a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+              <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                  <div class="date">{{ obj.timestamp }}</div>
+                  <div class="category">
+                    {% for cat in obj.categories.all %}
+                    <a href="#">{{ cat }}</a>
+                    {% endfor %}
+                    </div>
+                </div><a href="{{ obj.get_absolute_url }}">
+                  <h3 class="h4">{{ obj.title }}</h3></a>
+                <p class="text-muted">{{ obj.overview }}</p>
+                <a href="#" class="author d-flex align-items-center flex-wrap">
+                  <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                  <div class="title"><span>{{ obj.author.user.username }}</span></div>
+                  <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago</div>
+                </a>
+              </div>
             </div>
           </div>
           {% endfor %}
