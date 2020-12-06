@@ -1,6 +1,10 @@
 from django import forms
 from tinymce import TinyMCE
-from .models import Post, Comment
+from .models import Post, Comment, Author
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+
 
 
 class TinyMCEWidget(TinyMCE):
@@ -30,4 +34,18 @@ class CommentForm(forms.ModelForm):
     }))
     class Meta:
         model = Comment
-        fields = ('content',) 
+        fields = ['content',]
+
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'
+        exclude = ['user', ]

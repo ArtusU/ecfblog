@@ -17,10 +17,10 @@ class PostView(models.Model):
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
-    #job_title = models.CharField(max_length=20)
+    job_title = models.CharField(max_length=30, default='ECF')
 
     def __str__(self):
-        return self.user.username
+        return self.user.username + self.job_title
 
 
 class Category(models.Model):

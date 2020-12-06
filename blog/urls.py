@@ -6,12 +6,16 @@ from django.conf import settings
 
 from posts.views import (
     index, 
-    post_list, 
+    user_profile,
+    authorSettings,
+    post_list,
+    post_list_cat, 
     post_detail, 
     search, 
     post_create, 
     post_update, 
     post_delete,
+    
 
     IndexView,
     PostListView,
@@ -30,6 +34,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='home'),
 
     #path('blog/', post_list, name='post-list'),
+    path('blog/cat', post_list_cat, name='post-list'),
     path('blog/', PostListView.as_view(), name='post-list'),
 
     #path('post/<id>/', post_detail, name='post-detail'),
@@ -51,7 +56,10 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     
     path('accounts/', include('allauth.urls')),
-    path('accounts/profile/', index),
+    #path('accounts/profile/', user_profile, name='user-profile' ),
+    path('accounts/profile/', authorSettings, name='author-settings')
+
+    
     
     
 ]

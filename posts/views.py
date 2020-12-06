@@ -1,13 +1,17 @@
 from django.db.models import Count, Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, PostForm, UserUpdateForm, AuthorForm
 from .models import Post, Author, PostView
 from marketing.forms import EmailSignupForm
 from marketing.models import Signup
+
+
+
 
 
 def get_author(user):
@@ -15,6 +19,40 @@ def get_author(user):
     if qs:
         return qs
     return None
+
+
+
+def user_profile(request):
+    posts = request.user.posts_set.all().order_by('-date_created')
+    context = {
+        'orders': orders
+    }
+    return render(request, 'user_profile.html')
+
+@login_required
+def authorSettings(request):
+    
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        author_form = AuthorForm(request.POST, request.FILES, instance=request.user.author)
+        if user_form.is_valid() and author_form.is_valid():
+            user_form.save()
+            author_form.save()
+            messages.success(request, f'Your account has been updated.')
+            return redirect('home')
+
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        author_form = AuthorForm(instance=request.user.author)
+    
+    context = {
+        'user_form': user_form,
+        'author_form': author_form
+    }
+    
+    return render(request, 'author_profile.html', context)
+
+
 
 
 class SearchView(View):
@@ -25,6 +63,8 @@ class SearchView(View):
             queryset = queryset.filter(
                 Q(title__icontains=query) |
                 Q(overview__icontains=query)
+                #Q(author_id__icontains=query)
+                #Q(categories__icontains=query)
             ).distinct()
         context = {
             'queryset': queryset
@@ -50,6 +90,14 @@ def get_category_count():
     queryset = Post.objects.values('categories__title').annotate(Count('categories__title'))
     return queryset
 
+
+
+def post_list_cat(request):
+    queryset = Post.objects.filter(categories=request.post.categories)
+    context = {
+        'queryset':queryset
+    }
+    return render(request, 'blog_cat.html', context)
 
 class IndexView(View):
     form = EmailSignupForm()
@@ -96,6 +144,7 @@ class PostListView(ListView):
     template_name = 'blog.html'
     context_object_name = 'queryset'
     paginate_by = 4
+    ordering = ['-timestamp']
 
     def get_context_data(self, **kwargs):
         category_count = get_category_count()

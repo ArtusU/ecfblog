@@ -174,7 +174,11 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE=True
+LOGIN_REDIRECT_URL='/'
+
+#ACCOUNT_LOGIN_ON_PASSWORD_RESET=True
 #ACCOUNT_EMAIL_REQUIRED=True
 #ACCOUNT_EMAIL_VERIFICATION='mandatory'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
