@@ -22,13 +22,13 @@
                   <div class="date">{{ obj.timestamp }}</div>
                   <div class="category">
                     {% for cat in obj.categories.all %}
-                    <a href="#">{{ cat }}</a>
+                    <a href="{% url 'post-cat' cat.id %}">{{ cat }}</a>
                     {% endfor %}
                     </div>
                 </div><a href="{{ obj.get_absolute_url }}">
                   <h3 class="h4">{{ obj.title }}</h3></a>
                 <p class="text-muted">{{ obj.overview }}</p>
-                <a href="#" class="author d-flex align-items-center flex-wrap">
+                <a href="{% url 'post-author' obj.author_id %}" class="author d-flex align-items-center flex-wrap">
                   <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
                   <div class="title"><span>{{ obj.author.user.username }}</span></div>
                   <div class="title"><span>{{ obj.author.job_title }}</span></div>

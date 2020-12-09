@@ -19,14 +19,14 @@
                   {% comment %} <div class="date meta-last">20 May | 2016</div> {% endcomment %}
                   <div class="category">
                   {% for cat in post.categories.all %}
-                  <a href="#">{{ cat }}</a>
+                  <a href="{% url 'post-cat' cat.id %}">{{ cat }}</a>
                   {% endfor %}
                   </div>
                 </div><a href="{{ post.get_absolute_url }}">
                   <h3 class="h4">{{ post.title }}</h3></a>
                 <p class="text-muted">{{ post.overview }}</p>
                 <footer class="post-footer d-flex align-items-center">
-                  <a href="#" class="author d-flex align-items-center flex-wrap">
+                  <a href="{% url 'post-author' post.author_id %}" class="author d-flex align-items-center flex-wrap">
                     <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
                     <div class="title"><span>{{ post.author.user.username }}</span></div>
                     <div class="title"><span>{{ post.author.job_title }}</span></div>

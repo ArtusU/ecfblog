@@ -138,7 +138,7 @@ MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
 TINYMCE_DEFAULT_CONFIG = {
     'height' : 360,
-    'width' : 500,
+    'width' : 800,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
@@ -182,3 +182,12 @@ LOGIN_REDIRECT_URL='/'
 #ACCOUNT_EMAIL_VERIFICATION='mandatory'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+'''

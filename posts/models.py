@@ -1,6 +1,6 @@
 from tinymce import HTMLField
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth import default_app_config, get_user_model
 from django.urls import reverse
 
 
@@ -16,7 +16,7 @@ class PostView(models.Model):
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField()
+    profile_picture = models.ImageField(default='default.jpg', upload_to='profile_pics')
     job_title = models.CharField(max_length=30, default='ECF')
 
     def __str__(self):
@@ -42,7 +42,7 @@ class Comment(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    overview = models.TextField()
+    overview = models.TextField(max_length=200)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = HTMLField()
     #comment_count = models.IntegerField(default=0)

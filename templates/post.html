@@ -20,7 +20,7 @@
                 <div class="post-meta d-flex justify-content-between">
                   <div class="category">
                     {% for cat in post.categories.all %}
-                      <a href="#">{{ cat }}</a>
+                      <a href="{% url 'post-cat' cat.id %}">{{ cat }}</a>
                     {% endfor %}
                   </div>
                   {% if user.is_authenticated %}
@@ -31,8 +31,8 @@
                   {% endif %}
                   
                 </div>
-                <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
-                <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                <h1>{{ post.title }}</h1>
+                <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="{% url 'post-author' post.author_id %}" class="author d-flex align-items-center flex-wrap">
                     <div class="avatar"><img src="{{ post.author.profile_picture.url }} " alt="..." class="img-fluid"></div>
                     <div class="title"><span>{{ post.author.user.username }}</span></div></a>
                     <div class="title"><span>{{ post.author.job_title }}</span></div></a>
