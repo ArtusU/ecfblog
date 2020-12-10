@@ -8,13 +8,14 @@ from posts.views import (
     authorSettings,
     post_list_cat, 
     posts_list_user,
-    posts_list_author,  
+    posts_list_author, 
+    post_create, 
     
 
     IndexView,
     PostListView,
     PostDetailView,
-    PostCreateView,
+    #PostCreateView,
     PostUpdateView,
     PostDeleteView,
     SearchView
@@ -40,8 +41,8 @@ urlpatterns = [
     path('post/<pk>/', PostDetailView.as_view(), name='post-detail'),
 
 
-    #path('create/', post_create, name='post-create'),
-    path('create/', PostCreateView.as_view(), name='post-create'),
+    path('create/', post_create, name='post-create'),
+    #path('create/', PostCreateView.as_view(), name='post-create'),
 
     #path('post/<pk>/update', post_update, name='post-update'),
     path('post/<pk>/update', PostUpdateView.as_view(), name='post-update'),

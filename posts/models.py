@@ -1,10 +1,8 @@
 from tinymce import HTMLField
 from django.db import models
-from django.contrib.auth import default_app_config, get_user_model
+from django.contrib.auth.models import User
 from django.urls import reverse
 
-
-User = get_user_model()
 
 class PostView(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -15,7 +13,7 @@ class PostView(models.Model):
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_pics')
     job_title = models.CharField(max_length=30, default='ECF')
 

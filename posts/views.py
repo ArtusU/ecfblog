@@ -1,6 +1,7 @@
 from django.db.models import Count, Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
@@ -175,7 +176,7 @@ class PostDetailView(DetailView):
                 'pk': post.pk
             }))
 
-
+'''
 class PostCreateView(CreateView):
     model = Post
     template_name = 'post_create.html'
@@ -192,6 +193,36 @@ class PostCreateView(CreateView):
         return redirect(reverse("post-detail", kwargs={
             'pk': form.instance.pk
         }))
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = 'post_create.html'
+    form_class = PostForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    
+'''
+def post_create(request):
+    title = 'Create'
+    user = request.user
+    form = PostForm(request.POST or None, request.FILES or None)
+    author = Author.objects.filter(user=request.user).first()
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse("post-detail", kwargs={
+                'pk': form.instance.pk
+            }))
+    context = {
+        'title': title,
+        'form': form
+    }
+    return render(request, "post_create.html", context)
 
 
 class PostUpdateView(UpdateView):
