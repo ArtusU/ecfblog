@@ -4,7 +4,9 @@
 
 static_in_env/img
 
+
 ### Django ###
+.env
 *.log
 *.pot
 *.pyc

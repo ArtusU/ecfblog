@@ -10,13 +10,14 @@ from posts.views import (
     posts_list_user,
     posts_list_author, 
     post_create, 
+    post_update, 
     
 
     IndexView,
     PostListView,
     PostDetailView,
     #PostCreateView,
-    PostUpdateView,
+    #PostUpdateView,
     PostDeleteView,
     SearchView
     )
@@ -44,8 +45,7 @@ urlpatterns = [
     path('create/', post_create, name='post-create'),
     #path('create/', PostCreateView.as_view(), name='post-create'),
 
-    #path('post/<pk>/update', post_update, name='post-update'),
-    path('post/<pk>/update', PostUpdateView.as_view(), name='post-update'),
+    path('post/<id>/update/', post_update, name='post-update'),             #path('post/<pk>/update', PostUpdateView.as_view(), name='post-update'),
 
     #path('post/<pk>/delete', post_delete, name='post-delete'),
     path('post/<pk>/delete', PostDeleteView.as_view(), name='post-delete'),
@@ -56,7 +56,6 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     
     path('accounts/', include('allauth.urls')),
-    #path('accounts/<str:user_name>', include('allauth.urls')),
     #path('accounts/profile/', user_profile, name='user-profile' ),
     path('accounts/profile/', authorSettings, name='author-settings')
 

@@ -42,9 +42,10 @@
 
       
           {% if user.is_authenticated %}
+      
           <ul class="navbar-nav">
             <span class="dot"></span>
-            <li class="nav-item"><a class="nav-link" href="{% url 'post-user' user.id %}" class="nav-link ">Welcome {{ request.user|title }}</a>
+            <li class="nav-item"><a class="nav-link" href="{% url 'author-settings' %}" class="nav-link ">Welcome {{ request.user|title }}</a>
             </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
@@ -52,14 +53,14 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{% url 'post-create' %}">Create a Post</a>
-                      <a class="dropdown-item" href="{% url 'author-settings' %}">Edit User Details</a>
                       <a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{% url "account_logout" %}">Logout</a>
                   </div>
               </li>
           </ul>
-  
+         
+
           {% else %}  
             <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}"><i class="fas fa-user-alt mr-1 text-gray"></i>Sign Up</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>

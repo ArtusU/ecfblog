@@ -101,6 +101,37 @@ def post_create(request):
     return render(request, "post_create.html", context)
 
 
+
+class PostCreateView(CreateView):
+    model = Post
+    template_name = 'post_create.html'
+    form_class = PostForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create'
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = get_author(self.request.user)
+        form.save()
+        return redirect(reverse("post-detail", kwargs={
+            'pk': form.instance.pk
+        }))
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = 'post_create.html'
+    form_class = PostForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    
+
+
 def post_update(request, id):
     title = 'Update'
     post = get_object_or_404(Post, id=id)
@@ -122,6 +153,22 @@ def post_update(request, id):
     }
     return render(request, "post_create.html", context)
 
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_create.html'
+    form_class = PostForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Update'
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = get_author(self.request.user)
+        form.save()
+        return redirect(reverse("post-detail", kwargs={
+            'pk': form.instance.pk
+        }))
 
 def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
@@ -129,5 +176,11 @@ def post_delete(request, id):
     return redirect(reverse("post-list"))
 
 
+def get_posts_list_author(author):
+    queryset = Post.objects.filter(author_id=author).order_by('-timestamp')
+    return queryset
 
 
+def get_post_list_cat(cat_name):
+    queryset = Post.objects.filter(categories=cat_name).order_by('-timestamp')
+    return queryset

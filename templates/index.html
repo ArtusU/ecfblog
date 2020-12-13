@@ -10,7 +10,7 @@
       <div class="container mt-3">
         <header> 
           <h2>Latest News</h2>
-          <p class="text-big">Have a look at ours last chalenges.</p>
+          <p class="text-big">Take a peek at our latest projects!</p>
         </header>
         <div class="row">
           {% for obj in latest %}
@@ -44,22 +44,13 @@
   <!-- Gallery Section-->
     <section class="gallery no-padding">    
       <div class="row">
+      {% for obj in object_list %}
         <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/healthyrecipes.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/healthyrecipes.jpg' %}" alt="..." class="img-fluid">
+          <div class="item"><a href="{{ obj.thumbnail.url }}" data-fancybox="gallery" class="image"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid">
               <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
         </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/mangement.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/mangement.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/opertions.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/opertions.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="{% static 'img/projects.jpg' %}" data-fancybox="gallery" class="image"><img src="{% static 'img/projects.jpg' %}" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
+      {% endfor %}
+      
       </div>
     </section>
 
@@ -80,7 +71,7 @@
         <div class="row">
           <div class="col-lg-14">
             <h2 class="h3">ECF</h2>
-            <p class="text-big">Edinburgh Community Food is a <strong>social enterprise</strong> and a <strong> charity</strong>. Our social enterprise work is all about sourcing and selling the best quality fruit and vegetables. We run stalls in Edinburgh’s hospitals selling our great produce to staff, patients and visitors.  We also deliver fresh fruit and vegetables to homes and businesses across the city. All our profits go back into our charitable work.</p>
+            <p class="text-big">ECF is a <strong>social enterprise</strong> and a <strong> charity</strong>. Our social enterprise work is all about sourcing and selling the best quality fruit and vegetables. We run stalls in Edinburgh’s hospitals selling our great produce to staff, patients and visitors.  We also deliver fresh fruit and vegetables to homes and businesses across the city. All our profits go back into our charitable work.</p>
           </div>
         </div>
       </div>
@@ -92,7 +83,7 @@
         <div class="row">
           <div class="col-md-6">
             <h2>Subscribe to Newsletter</h2>
-            <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="text-big"></p>
           </div>
           <div class="col-md-8">
             <div class="form-holder">

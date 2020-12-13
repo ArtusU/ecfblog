@@ -18,7 +18,7 @@ class PostForm(forms.ModelForm):
             attrs={'required': False, 'cols': 30, 'rows': 10}
         )
     )
-
+    
     class Meta:
         model = Post
         fields = ('title', 'overview', 'content', 'thumbnail', 

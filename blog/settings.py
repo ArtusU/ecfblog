@@ -1,18 +1,20 @@
 from pathlib import Path
 import os
+import environ
+from decouple import DEFAULT_ENCODING, config
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rc07$p68@)3h6!ihq-yjn31nl22rlx$i0+)y-t3^j*+=-*hp_0'
+DEBUG = config('DEBUG', default=False, cast=bool)
+TEMPLATE_DEBUG = DEBUG
+#DEBUG = True
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'marketing',
     'tinymce',
     'crispy_forms',
+
+    'storages',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -129,6 +133,8 @@ VENV_PATH = os.path.dirname(BASE_DIR)
 STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
+
+
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -174,20 +180,46 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE=True
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE=False
 LOGIN_REDIRECT_URL='/'
 
-#ACCOUNT_LOGIN_ON_PASSWORD_RESET=True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET=True
 #ACCOUNT_EMAIL_REQUIRED=True
 #ACCOUNT_EMAIL_VERIFICATION='mandatory'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-'''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-'''
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+
+
+AWS_S3_HOST="s3.ca-central-1.amazonaws.com"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+#AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+#AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+#STATIC_LOCATION = 'static'
+#STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/${STATIC_LOCATION}/'
+#STATICFILES_STORAGE = 'blog.storage_backends.StaticStorage'
+
+#PUBLIC_MEDIA_LOCATION = 'media'
+#MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/${PUBLIC_MEDIA_LOCATION}/'
+#DEFAULT_FILE_STORAGE = 'blog.storage_backends.MediaStorage'
+
+
+

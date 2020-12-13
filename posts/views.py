@@ -30,7 +30,7 @@ def posts_list_user(request, user):
     context = {
         'queryset': queryset
     }
-    return render(request, 'blog.html', context)
+    return render(request, 'sort.html', context)
 
 
 class SearchView(View):
@@ -61,7 +61,7 @@ def post_list_cat(request, cat_name):
         'queryset':queryset,
         'cat_name':cat_name
     }
-    return render(request, 'blog.html', context)
+    return render(request, 'sort.html', context)
 
 
 def posts_list_author(request, author):
@@ -69,7 +69,7 @@ def posts_list_author(request, author):
     context = {
         'queryset':queryset,
     }
-    return render(request, 'blog.html', context)
+    return render(request, 'sort.html', context)
 
 
 @login_required
@@ -98,8 +98,8 @@ class IndexView(View):
     form = EmailSignupForm()
 
     def get(self, request, *args, **kwargs):
-        featured = Post.objects.filter(featured=True).order_by('-timestamp')
-        latest = Post.objects.order_by('-timestamp')[0:3]
+        featured = Post.objects.filter(featured=True).order_by('-timestamp')[:4]
+        latest = Post.objects.order_by('-timestamp')[:3]
         context = {
             'object_list': featured,
             'latest': latest,
@@ -125,11 +125,6 @@ class PostListView(ListView):
     paginate_by = 4
     ordering = ['-timestamp']
 
-    '''
-    def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
-    '''
 
     def get_context_data(self, **kwargs):
         category_count = get_category_count()
@@ -176,39 +171,10 @@ class PostDetailView(DetailView):
                 'pk': post.pk
             }))
 
-'''
-class PostCreateView(CreateView):
-    model = Post
-    template_name = 'post_create.html'
-    form_class = PostForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Create'
-        return context
-
-    def form_valid(self, form):
-        form.instance.author = get_author(self.request.user)
-        form.save()
-        return redirect(reverse("post-detail", kwargs={
-            'pk': form.instance.pk
-        }))
-
-
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    template_name = 'post_create.html'
-    form_class = PostForm
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    
-'''
+@login_required
 def post_create(request):
     title = 'Create'
-    user = request.user
     form = PostForm(request.POST or None, request.FILES or None)
     author = Author.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -225,25 +191,29 @@ def post_create(request):
     return render(request, "post_create.html", context)
 
 
-class PostUpdateView(UpdateView):
-    model = Post
-    template_name = 'post_create.html'
-    form_class = PostForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Update'
-        return context
+@login_required
+def post_update(request, id):
+    title = 'Update'
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
+    author = Author.objects.filter(user=request.user).first()
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse("post-detail", kwargs={
+                'pk': form.instance.pk
+            }))
 
-    def form_valid(self, form):
-        form.instance.author = get_author(self.request.user)
-        form.save()
-        return redirect(reverse("post-detail", kwargs={
-            'pk': form.instance.pk
-        }))
+    context = {
+        'title': title,
+        'form': form
+    }
+    return render(request, "post_create.html", context)
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = '/blog'
     template_name = 'post_confirm_delete.html'
