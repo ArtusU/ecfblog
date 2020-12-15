@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import environ
 from decouple import DEFAULT_ENCODING, config
+import django_heroku
 
 
 
