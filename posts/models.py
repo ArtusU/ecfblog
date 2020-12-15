@@ -14,7 +14,7 @@ class PostView(models.Model):
 
 class Author(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    profile_picture = models.ImageField()
     job_title = models.CharField(max_length=30, default='ECF')
 
     def __str__(self):
