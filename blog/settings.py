@@ -14,7 +14,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 #DEBUG = config('DEBUG', default=False, cast=bool)
 #TEMPLATE_DEBUG = DEBUG
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['ecfblog.herokuapp.com', 'localhost', '127.0.0.1', '127.0.0.1:8000']
@@ -130,15 +130,15 @@ MEDIA_URL= '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_in_env'),
     ]
-VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
-MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
+    
+#VENV_PATH = os.path.dirname(BASE_DIR)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # Tinymce
@@ -188,14 +188,15 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET=True
 #ACCOUNT_EMAIL_REQUIRED=True
 #ACCOUNT_EMAIL_VERIFICATION='mandatory'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
@@ -212,18 +213,3 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 django_heroku.settings(locals())
 
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-#AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-#AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-
-#STATIC_LOCATION = 'static'
-#STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/${STATIC_LOCATION}/'
-#STATICFILES_STORAGE = 'blog.storage_backends.StaticStorage'
-
-#PUBLIC_MEDIA_LOCATION = 'media'
-#MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/${PUBLIC_MEDIA_LOCATION}/'
-#DEFAULT_FILE_STORAGE = 'blog.storage_backends.MediaStorage'
-
-
-
