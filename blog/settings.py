@@ -14,10 +14,10 @@ SECRET_KEY = config('SECRET_KEY')
 
 #DEBUG = config('DEBUG', default=False, cast=bool)
 #TEMPLATE_DEBUG = DEBUG
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = ['ecfblog.herokuapp.com', 'localhost', '127.0.0.1', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['*', 'ecfblog.herokuapp.com', 'localhost', '127.0.0.1', '127.0.0.1:8000']
 
 
 # Application definition
@@ -136,8 +136,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
