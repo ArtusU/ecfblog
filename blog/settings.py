@@ -16,7 +16,7 @@ TEMPLATE_DEBUG = DEBUG
 #DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ecfblog.herokuapp.com', 'localhost', '127.0.0.1', '127.0.0.1:8000']
 
 
 # Application definition
@@ -206,6 +206,9 @@ AWS_S3_HOST="s3.ca-central-1.amazonaws.com"
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+django_heroku.settings(locals())
 
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
