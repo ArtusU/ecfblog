@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
-TEMPLATE_DEBUG = DEBUG
-#DEBUG = True
+#DEBUG = config('DEBUG', default=False, cast=bool)
+#TEMPLATE_DEBUG = DEBUG
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['ecfblog.herokuapp.com', 'localhost', '127.0.0.1', '127.0.0.1:8000']
