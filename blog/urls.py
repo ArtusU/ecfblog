@@ -61,8 +61,6 @@ urlpatterns = [
     path('accounts/profile/', authorSettings, name='author-settings')
 
     
-    
-    
 ]
 
 if settings.DEBUG:
