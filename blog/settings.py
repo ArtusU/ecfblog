@@ -14,8 +14,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 #DEBUG = config('DEBUG', default=False, cast=bool)
 #TEMPLATE_DEBUG = DEBUG
-DEBUG = True
-
+DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'ecfblog.herokuapp.com', 'localhost', '127.0.0.1', '127.0.0.1:8000']
 
