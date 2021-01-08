@@ -1,8 +1,7 @@
-# ecfblog
+## ECF Blog
 
-Generally about the blog.
-Home View
-
+Python Django Blog, designed for a local charity as a database for recent projects and activities. Searching by Categories and Users.
+#Home View
 ![image](https://drive.google.com/uc?export=view&id=18m6TqKGyBKFwwsPoDGF109vsyf4HQM4C)
 
 ![image](https://drive.google.com/uc?export=view&id=1cjrs_7a6Kuy7GrPCCOYhswk7SJzOGQKo)
@@ -18,3 +17,5 @@ Create a Post
 
 Search results
 ![image](https://drive.google.com/uc?export=view&id=16K0et2eWwSy9DvmO53nrzz03oNw-roNt)
+
+https://ecfblog.herokuapp.com/
