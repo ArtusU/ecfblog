@@ -1,4 +1,4 @@
-## ECF Blog
+## [ECF Blog](https://ecfblog.herokuapp.com/)
 
 Python Django Blog, designed for a local charity as a database for recent projects and activities. Searching by Categories and Users.
 <br>
@@ -22,4 +22,4 @@ Last three recent posts displayed as a part of home view plus other possible sta
 ![image](https://drive.google.com/uc?export=view&id=16K0et2eWwSy9DvmO53nrzz03oNw-roNt)
 
 
-:point_right: [ECF Blog] (https://ecfblog.herokuapp.com/)
+:point_right: [ECF Blog](https://ecfblog.herokuapp.com/)
