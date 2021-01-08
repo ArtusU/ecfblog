@@ -1,6 +1,6 @@
 # [ECF Blog](https://ecfblog.herokuapp.com/)
 
-Python Django ECF Blog, designed for a local charity as a database/journal/activity report allowing for describing recent projects and activities. Search by categories/projects and users available. In the final version, only the employee will be able to create posts. Registration and Login functions will be limited to employees only.
+Python Django ECF Blog, designed for a local charity as a database/ journal/ activity report allowing for describing and saving recent projects and activities. Search by categories/projects and users available. In the final version, only the employee will be permited to create posts. Registration and Login functions will be limited to employees only. 
 
 Deployment: Heroku, Postgresql
 
@@ -18,7 +18,7 @@ To make the home view more dynamic and up to date, the recent three posts are di
 
 
 ## Blog View
-Blog view displays four recent posts. Pagination allows for browsing older posts. In the sidebar: search bar, recent posts, and category. 
+Blog view displays four recent posts. Pagination allows for browsing older posts. In the sidebar: Search the Blog, Latest Posts, and Categories. 
 
 ![image](https://drive.google.com/uc?export=view&id=1C6C7810WT-5bv8HsIqtw6Uv69YzzMFvy)
 
