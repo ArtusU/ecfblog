@@ -1,8 +1,12 @@
 # [ECF Blog](https://ecfblog.herokuapp.com/)
 
-Python Django ECF Blog, designed for a local charity as a database/journal/activity report allowing for describing recent projects and activities. Search by categories/projects and users available.
+Python Django ECF Blog, designed for a local charity as a database/journal/activity report allowing for describing recent projects and activities. Search by categories/projects and users available. In the final version, only the employee will be able to create posts. Registration and Login functions will be limited to employees only.
 
-In the final version, only the employee will be able to create posts. Registration and Login functions will be limited to employees only.
+Deployment: Heroku, Postgresql
+
+Static Files: AWS 
+
+Front-end: Bootstrapious
 
 ![image](https://drive.google.com/uc?export=view&id=18m6TqKGyBKFwwsPoDGF109vsyf4HQM4C)
 
