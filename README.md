@@ -1,4 +1,4 @@
-# [ECF Blog]
+# ECF Blog
 
 Python Django ECF Blog, designed for a local charity as a database/ journal/ activity report allowing for describing and saving recent projects and activities. Search by categories/projects and users available. In the final version, only the employee will be permited to create posts. Registration and Login functions will be limited to employees only. 
 
