@@ -1,4 +1,4 @@
-# [ECF Blog](https://ecfblog.herokuapp.com/)
+# [ECF Blog]
 
 Python Django ECF Blog, designed for a local charity as a database/ journal/ activity report allowing for describing and saving recent projects and activities. Search by categories/projects and users available. In the final version, only the employee will be permited to create posts. Registration and Login functions will be limited to employees only. 
 
@@ -41,5 +41,3 @@ Allows to search for phrases in the title and in the body.
 ![image](https://drive.google.com/uc?export=view&id=16K0et2eWwSy9DvmO53nrzz03oNw-roNt)
 
 
-
-Please visit: [ECF Blog](https://ecfblog.herokuapp.com/)
